@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/config.xsd">
+    <default>
+        <carriers>
+            <customshipping>
+                <active>1</active>
+                <model>Pankaj\CustomShipping\Model\Carrier\Custom</model>
+                <title>Standard Delivery</title>
+                <name>Custom Shipping Carrier Method</name>
+                <shipping_cost>10</shipping_cost>
+                <price>50</price>
+                <sort_order>10</sort_order>
+            </customshipping>
+        </carriers>
+    </default>
+</config>
