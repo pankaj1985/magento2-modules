@@ -1,0 +1,116 @@
+<style>
+    /* Slider Container */
+    .testimonial-slider-container {
+        padding: 0 40px;
+        margin: 40px 0;
+    }
+    /* Individual Slide */
+    .testimonial-item {
+        padding: 10px;
+    }
+    /* Inner Box */
+    .testimonial-content {
+        background: #f9f9f9;
+        border: 1px solid #eee;
+        padding: 25px;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 4px;
+    }
+    /* Profile Image & Name Section */
+    .client-profile {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .profile-pic-circle {
+        margin-right: 12px;
+    }
+    .profile-pic-circle img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid #ddd;
+    }
+    .placeholder-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #666;
+    }
+    .message {
+        font-style: italic;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+    .client-info {
+        text-align: right;
+        color: #555;
+        font-size: 14px;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+</style>
+
+<div class="testimonial-slider-container">
+    <h2 align="center"><?= $block->escapeHtml(__('Client Testimonials')) ?></h2>
+    <div id="testimonial-slider" data-mage-init='{
+        "slick": {
+            "dots": true,
+            "infinite": true,
+            "slidesToShow": 3,
+            "slidesToScroll": 1,
+            "arrows": true,
+            "responsive": [
+                {"breakpoint": 768, "settings": {"slidesToShow": 1}}
+            ]
+        }
+    }'>
+    <?php
+      if($block->getTestimonials()):
+    ?>
+        <?php foreach ($block->getTestimonials() as $item): ?>
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    
+                    <div class="client-profile">
+                        <div class="profile-pic-circle">
+                            <?php if ($item->getProfilePic()): ?>
+                                <img src="<?= $block->escapeUrl($block->getImageUrl($item->getProfilePic())) ?>" 
+                                     alt="<?= $block->escapeHtml($item->getName()) ?>">
+                            <?php else: ?>
+                                <div class="placeholder-avatar">
+                                    <?= $block->escapeHtml(substr($item->getName(), 0, 1)) ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="client-meta">
+                            <strong><?= $block->escapeHtml($item->getName()) ?></strong><br>
+                            <small style="color:#888;"><?= $block->escapeHtml($item->getPost()) ?></small>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        "<?= $block->escapeHtml($item->getMessage()) ?>"
+                    </div>
+
+                    <div class="client-info">
+                        <span><?= $block->escapeHtml($item->getCompanyName()) ?></span>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+        <?php else: ?>
+            <p align="center"><?= $block->escapeHtml(__('No testimonials available at the moment.')) ?></p>
+        <?php endif; ?>
+    </div>
+</div>

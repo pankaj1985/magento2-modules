@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Pankaj\Testimonials\Api\TestimonialRepositoryInterface" type="Pankaj\Testimonials\Model\TestimonialRepository" />
+	<preference for="Pankaj\Testimonials\Api\Data\TestimonialInterface" type="Pankaj\Testimonials\Model\Testimonials"/>
+	<preference for="Pankaj\Testimonials\Api\Data\TestimonialSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="testimonials_import" xsi:type="object">Pankaj\Testimonials\Console\Command\ImportTestimonials</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

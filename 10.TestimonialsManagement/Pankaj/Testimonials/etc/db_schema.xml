@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework/Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="pankaj_testimonials" resource="default" engine="innodb" comment="Testimonials Table">
+        <column name="testimonial_id" xsi:type="int" nullable="false" identity="true" unsigned="true" comment="Testimonial ID"/>
+        <column name="company_name" xsi:type="varchar" length="255" nullable="false" comment="Company Name"/>
+        <column name="name" xsi:type="varchar" length="255" nullable="false" comment="Name"/>
+        <column name="message" xsi:type="text" nullable="false" comment="Message"/>
+        <column name="post" xsi:type="varchar" length="255" nullable="false" comment="Post"/>
+        <column name="profile_pic" xsi:type="varchar" length="255" nullable="true" comment="Profile Pic"/>
+        <column name="status" xsi:type="smallint" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="testimonial_id"/>
+        </constraint>
+    </table>
+</schema>

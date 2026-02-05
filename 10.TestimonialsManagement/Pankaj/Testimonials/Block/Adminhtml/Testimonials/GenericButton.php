@@ -1,0 +1,46 @@
+<?php
+namespace Pankaj\Testimonials\Block\Adminhtml\Testimonials;
+
+use Magento\Backend\Block\Widget\Context;
+
+/**
+ * Class GenericButton
+ */
+abstract class GenericButton
+{
+
+    /**
+     * @var Context
+     */
+    protected $context;
+
+    /**
+     * @param \Magento\Backend\Block\Widget\Context $context
+     */
+    public function __construct(Context $context)
+    {
+        $this->context = $context;
+    }
+
+    /**
+     * Return model ID
+     *
+     * @return int|null
+     */
+    public function getNewsId()
+    {
+        return $this->context->getRequest()->getParam('testimonial_id');
+    }
+
+    /**
+     * Generate url by route and parameters
+     *
+     * @param   string $route
+     * @param   array $params
+     * @return  string
+     */
+    public function getUrl($route = '', $params = [])
+    {
+        return $this->context->getUrlBuilder()->getUrl($route, $params);
+    }
+}

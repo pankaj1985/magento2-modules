@@ -1,0 +1,22 @@
+{
+    "name": "pankaj/module-testimonials",
+    "description": "Testimonial module with CLI command and REST API for CURD operations with Admin Management",
+    "require": {
+        "php": ">=7.4",
+        "magento/framework": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Pankaj\\Testimonials\\": ""
+        }
+    }
+}

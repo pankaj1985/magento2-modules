@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <!-- Get Testimonial by ID -->
+    <route url="/V1/testimonial/:testimonialId" method="GET">
+        <service class="Pankaj\Testimonials\Api\TestimonialRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Get Testimonial List -->
+    <route url="/V1/testimonial/list" method="GET">
+        <service class="Pankaj\Testimonials\Api\TestimonialRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Create or Update Testimonial -->
+    <route url="/V1/testimonial/add" method="POST">
+        <service class="Pankaj\Testimonials\Api\TestimonialRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Delete Testimonial by ID -->
+    <route url="/V1/testimonial/:testimonialId" method="DELETE">
+        <service class="Pankaj\Testimonials\Api\TestimonialRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Get Testimonials by Status -->
+    <route url="/V1/testimonial/status/:status" method="GET">
+        <service class="Pankaj\Testimonials\Api\TestimonialRepositoryInterface" method="getListByStatus"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

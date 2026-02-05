@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">pankaj_index_listing.testimonials_index_listing_data_source</item>
+		</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Testimonial</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/add</item>
+            </item>
+        </item>
+	</argument>
+	<settings>
+		<spinner>pankaj_index_listing_columns</spinner>
+		<deps>
+			<dep>pankaj_index_listing.testimonials_index_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="testimonials_index_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">testimonial_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Pankaj_Testimonials::view</aclResource>
+		<dataProvider name="testimonials_index_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>testimonial_id</requestFieldName>
+				<primaryFieldName>testimonial_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="pankaj/index/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+		    <action name="enable">
+		        <settings>
+		            <confirm>
+		                <message translate="true">Enable selected testimonials?</message>
+		                <title translate="true">Enable Testimonials</title>
+		            </confirm>
+		            <url path="pankaj/index/massStatus">
+		                <param name="status">1</param>
+		            </url>
+		            <type>enable</type>
+		            <label translate="true">Enable</label>
+		        </settings>
+		    </action>
+		    <action name="disable">
+		        <settings>
+		            <confirm>
+		                <message translate="true">Disable selected testimonials?</message>
+		                <title translate="true">Disable Testimonials</title>
+		            </confirm>
+		            <url path="pankaj/index/massStatus">
+		                <param name="status">0</param>
+		            </url>
+		            <type>disable</type>
+		            <label translate="true">Disable</label>
+		        </settings>
+		    </action>
+			<selectProvider>pankaj_index_listing.testimonials_index_listing_data_source.pankaj_index_listing_columns.ids</selectProvider>
+        <indexField>testimonial_id</indexField>
+        </massaction>
+		<paging name="listing_paging"/>
+		<exportButton name="export_button"/>
+	</listingToolbar>
+	<columns name="pankaj_index_listing_columns">
+		<selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">testimonial_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+		<column name="testimonial_id">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Sr.No</label>
+				<sorting>desc</sorting>
+			</settings>
+		</column>
+		<column name="company_name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Company Name</label>
+				<sorting>desc</sorting>
+			</settings>
+		</column>
+		<column name="name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Name</label>
+				<sorting>desc</sorting>
+			</settings>
+		</column>
+		<column name="post">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Post</label>
+				<sorting>desc</sorting>
+			</settings>
+		</column>
+		<column name="message">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Message</label>
+				<sorting>desc</sorting>
+			</settings>
+		</column>
+		<column name="profile_pic" class="Pankaj\Testimonials\Ui\Component\Listing\Column\Thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="has_preview" xsi:type="string">60</item>                    
+                    <item name="label" xsi:type="string" translate="true">Profile Picture</item>
+                </item>
+            </argument>
+        </column>
+		<column name="status">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Pankaj\Testimonials\Model\Status\Options</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="sorting" xsi:type="string">asc</item>
+					<item name="sortOrder" xsi:type="number">2</item>
+					<item name="label" translate="true" xsi:type="string">Status</item>
+				</item>
+			</argument>
+    	</column>
+		<actionsColumn name="actions" class="Pankaj\Testimonials\Ui\Component\Listing\Column\Actions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">testimonial_id</item>
+                    <item name="urlEntityParamName" xsi:type="string">testimonial_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+	</columns>
+</listing>

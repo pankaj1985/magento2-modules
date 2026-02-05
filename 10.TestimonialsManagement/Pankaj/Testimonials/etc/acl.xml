@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Pankaj_Testimonials::menu" title="Testimonials" sortOrder="10">
+					<resource id="Pankaj_Testimonials::testimonials" title="Testimonials" sortOrder="90">
+                        <resource id="Pankaj_Testimonials::view" title="View" sortOrder="10"/>
+                        <resource id="Pankaj_Testimonials::add" title="Add" sortOrder="20"/>
+                        <resource id="Pankaj_Testimonials::delete" title="Delete" sortOrder="30"/>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>
