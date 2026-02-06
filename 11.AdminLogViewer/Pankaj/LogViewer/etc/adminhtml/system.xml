@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system.xsd">
+    <system>
+        <tab id="pankaj_logviewer" translate="label" sortOrder="10">
+            <label>Logviewer</label>
+        </tab>
+        <section id="logviewer" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Log Viewer Settings</label>
+            <tab>pankaj_logviewer</tab>
+            <resource>Pankaj_LogViewer::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="lines_count" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>Number of Lines to Show</label>
+                    <comment>Default is 50 lines.</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="allowed_files" translate="label" type="multiselect" sortOrder="20" showInDefault="1">
+                    <label>Select Allowed Log Files</label>
+                    <source_model>Pankaj\LogViewer\Model\Config\Options</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <comment>Select files you want to show in the Grid. Hold Ctrl to select multiple.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

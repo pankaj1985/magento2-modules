@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="logviewer_log_listing_data_source" xsi:type="string">Pankaj\LogViewer\Model\Log\DataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Pankaj\LogViewer\Model\Log\DataProvider">
+        <arguments>
+            <argument name="name" xsi:type="string">logviewer_log_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id_field</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+        </arguments>
+    </type>
+</config>

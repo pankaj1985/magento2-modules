@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Pankaj_LogViewer::log_parent"
+             title="Log Viewer"
+             module="Pankaj_LogViewer"
+             sortOrder="100"
+             parent="Magento_Backend::system"
+             resource="Pankaj_LogViewer::log_viewer"
+             dependsOnConfig="logviewer/general/enabled" />
+             
+        <add id="Pankaj_LogViewer::log_list"
+             title="View Logs"
+             module="Pankaj_LogViewer"
+             sortOrder="10"
+             parent="Pankaj_LogViewer::log_parent"
+             action="logviewer/log/index"
+             resource="Pankaj_LogViewer::log_viewer"
+             dependsOnConfig="logviewer/general/enabled" />
+    </menu>
+</config>
