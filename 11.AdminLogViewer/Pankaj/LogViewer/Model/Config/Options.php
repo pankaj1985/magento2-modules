@@ -1,14 +1,9 @@
 <?php
-/**
- * Copyright © Pankaj Sharma. All rights reserved.
- */
-declare(strict_types=1);
 namespace Pankaj\LogViewer\Model\Config;
 
 use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem\Driver\File;
-use Magento\Framework\Filesystem\Io\File as IoFile;
 
 /**
  * Class Options
@@ -16,12 +11,6 @@ use Magento\Framework\Filesystem\Io\File as IoFile;
  */
 class Options implements OptionSourceInterface
 {
-
-    /**
-     * @var IoFile
-     */
-    protected $ioFile;
-
     /**
      * @var DirectoryList
      */
@@ -37,16 +26,13 @@ class Options implements OptionSourceInterface
      *
      * @param DirectoryList $directoryList
      * @param File $fileDriver
-     * @param IoFile $ioFile
      */
     public function __construct(
         DirectoryList $directoryList,
-        File $fileDriver,
-        IoFile $ioFile
+        File $fileDriver
     ) {
         $this->directoryList = $directoryList;
         $this->fileDriver = $fileDriver;
-        $this->ioFile = $ioFile;
     }
 
     /**
@@ -56,7 +42,6 @@ class Options implements OptionSourceInterface
      */
     public function toOptionArray(): array
     {
-        
         $logDir = $this->directoryList->getPath(DirectoryList::LOG);
         $options = [];
 
@@ -64,15 +49,11 @@ class Options implements OptionSourceInterface
             if ($this->fileDriver->isExists($logDir)) {
                 $files = $this->fileDriver->readDirectory($logDir);
                 foreach ($files as $filePath) {
-                    
                     // Check if it's a file and has .log extension
                     if ($this->fileDriver->isFile($filePath) && strpos($filePath, '.log') !== false) {
-                        
-                        $pathInfo = $this->ioFile->getPathInfo($filePath);
-                        
-                        $fileName = $pathInfo['basename'] ?? '';
+                        $fileName = basename($filePath);
                         $options[] = [
-                            'value' => $fileName,
+                            'value' => $fileName, 
                             'label' => $fileName
                         ];
                     }

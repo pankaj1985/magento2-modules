@@ -13,7 +13,7 @@ class Data extends AbstractHelper
     /**
      * Configuration path prefix
      */
-    private const XML_PATH_LOGVIEWER = 'logviewer/general/';
+    const XML_PATH_LOGVIEWER = 'logviewer/general/';
 
     /**
      * Get system configuration value

@@ -22,7 +22,7 @@ class ViewAction extends Column
     /**
      * URL route for the log view controller
      */
-    protected const URL_PATH_VIEW = 'logviewer/log/view';
+    const URL_PATH_VIEW = 'logviewer/log/view';
 
     /**
      * @var UrlInterface

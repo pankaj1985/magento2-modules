@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright © Pankaj Sharma. All rights reserved.
- * See COPYING.txt for license details.
- */
 namespace Pankaj\LogViewer\Controller\Adminhtml\Log;
 
 use Magento\Backend\App\Action;

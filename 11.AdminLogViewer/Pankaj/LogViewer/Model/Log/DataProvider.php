@@ -1,35 +1,41 @@
 <?php
-/**
- * Copyright © Pankaj Sharma. All rights reserved.
- */
-declare(strict_types=1);
-
 namespace Pankaj\LogViewer\Model\Log;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem\Driver\File;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Pankaj\LogViewer\Helper\Data as LogViewerHelper;
-use Magento\Framework\Filesystem\Io\File as IoFile;
-use Magento\Framework\App\RequestInterface;
 
+/**
+ * Class DataProvider
+ * Custom DataProvider for the Log Viewer UI Component grid
+ */
 class DataProvider extends AbstractDataProvider
 {
-    protected $request;
-    protected $ioFile;
+    /**
+     * @var DirectoryList
+     */
     protected $directoryList;
+
+    /**
+     * @var File
+     */
     protected $fileDriver;
+
+    /**
+     * @var LogViewerHelper
+     */
     protected $logViewerHelper;
 
     /**
+     * DataProvider constructor
+     *
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
      * @param DirectoryList $directoryList
      * @param File $fileDriver
      * @param LogViewerHelper $logViewerHelper
-     * @param IoFile $ioFile
-     * @param RequestInterface $request
      * @param array $meta
      * @param array $data
      */
@@ -40,21 +46,23 @@ class DataProvider extends AbstractDataProvider
         DirectoryList $directoryList,
         File $fileDriver,
         LogViewerHelper $logViewerHelper,
-        IoFile $ioFile,
-        RequestInterface $request, // Fixed: Added request here
         array $meta = [],
         array $data = []
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->directoryList   = $directoryList;
-        $this->request         = $request;
         $this->fileDriver      = $fileDriver;
         $this->logViewerHelper = $logViewerHelper;
-        $this->ioFile          = $ioFile;
     }
 
+    /**
+     * Get Log Data for UI Component Grid
+     *
+     * @return array
+     */
     public function getData(): array
     {
+        // Check if module is enabled before processing
         if (!$this->logViewerHelper->isEnabled()) {
             return ['totalRecords' => 0, 'items' => []];
         }
@@ -67,16 +75,13 @@ class DataProvider extends AbstractDataProvider
         try {
             if ($this->fileDriver->isExists($logDir)) {
                 $files = $this->fileDriver->readDirectory($logDir);
-                foreach ($files as $filePath) {
-                    
-                    // Sahi logic: loop mein aane wali file ka naam nikalna
-                    $pathInfo = $this->ioFile->getPathInfo($filePath);
-                    $fileName = $pathInfo['basename'] ?? '';
 
-                    // Filter: Log file check and extension check
+                foreach ($files as $filePath) {
+                    $fileName = basename($filePath);
+
+                    // Filter: Check if file is in allowed list and has .log extension
                     if ($this->fileDriver->isFile($filePath) && strpos($filePath, '.log') !== false) {
-                        // Check if allowed list is empty (show all) OR if file is in allowed list
-                        if (empty($allowedFiles) || in_array($fileName, $allowedFiles)) {
+                        if (!empty($allowedFiles) && in_array($fileName, $allowedFiles)) {
                             $fileStats = $this->fileDriver->stat($filePath);
 
                             $items[] = [
@@ -90,6 +95,7 @@ class DataProvider extends AbstractDataProvider
                 }
             }
         } catch (\Exception $e) {
+            // Handle directory reading errors gracefully
             return ['totalRecords' => 0, 'items' => []];
         }
 
