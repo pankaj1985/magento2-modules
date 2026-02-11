@@ -1,0 +1,42 @@
+/**
+ * Copyright © Pankaj Sharma. All rights reserved.
+ */
+
+.log-viewer-toolbar {
+    margin-bottom: 20px;
+}
+
+.log-container-card {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.log-header {
+    background: #333;
+    color: #fff;
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.log-header .file-name {
+    color: #ff9900;
+}
+
+.log-body {
+    background: #000;
+    margin: 0;
+}
+
+.log-body pre {
+    color: #00ff00;
+    padding: 25px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    max-height: 650px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    margin: 0;
+}

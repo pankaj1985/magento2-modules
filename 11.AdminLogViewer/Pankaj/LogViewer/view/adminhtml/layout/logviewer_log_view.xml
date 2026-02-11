@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Pankaj_LogViewer::css/log-viewer.css"/>
+    </head>
     <body>
         <referenceContainer name="content">
-            <block class="Pankaj\LogViewer\Block\Adminhtml\Log\View" name="log_view_block" template="Pankaj_LogViewer::view.phtml"/>
+            <block class="Pankaj\LogViewer\Block\Adminhtml\Log\View" 
+                   name="log_viewer_view" 
+                   template="Pankaj_LogViewer::view.phtml"/>
         </referenceContainer>
     </body>
 </page>
