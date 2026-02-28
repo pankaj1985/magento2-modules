@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright © Pankaj Sharma. All rights reserved.
+ */
+declare(strict_types=1);
+
 namespace Pankaj\Testimonials\Block;
 
 use Magento\Store\Model\StoreManagerInterface;

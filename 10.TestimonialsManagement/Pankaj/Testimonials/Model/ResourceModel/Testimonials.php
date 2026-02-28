@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright © Pankaj Sharma. All rights reserved.
+ */
+declare(strict_types=1);
+
 namespace Pankaj\Testimonials\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;

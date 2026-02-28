@@ -1,11 +1,15 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-	<menu>
+	
+    
+    <menu>
+        
         <add 
             id="Pankaj_Testimonials::menu" 
             title="Pankaj Testimonials" 
             module="Pankaj_Testimonials" 
             sortOrder="10"
+            parent="Magento_Backend::content"
             resource="Pankaj_Testimonials::menu"/>
         <add 
             id="Pankaj_Testimonials::testimonials" 

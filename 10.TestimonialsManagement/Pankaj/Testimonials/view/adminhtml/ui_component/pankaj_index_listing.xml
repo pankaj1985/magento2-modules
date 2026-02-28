@@ -42,6 +42,14 @@
 		<columnsControls name="columns_controls"/>
 		<filters name="listing_filters"/>
         <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+			<argument name="data" xsi:type="array">
+					<item name="data" xsi:type="array">
+						<item name="selectProvider" xsi:type="string">pankaj_index_listing.pankaj_index_listing_columns.ids</item>
+						<item name="displayArea" xsi:type="string">bottom</item>
+						<item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+						<item name="indexField" xsi:type="string">testimonial_id</item>
+					</item>
+			</argument>
             <action name="delete">
                 <settings>
                     <confirm>
@@ -79,8 +87,8 @@
 		            <label translate="true">Disable</label>
 		        </settings>
 		    </action>
-			<selectProvider>pankaj_index_listing.testimonials_index_listing_data_source.pankaj_index_listing_columns.ids</selectProvider>
-        <indexField>testimonial_id</indexField>
+			
+        
         </massaction>
 		<paging name="listing_paging"/>
 		<exportButton name="export_button"/>

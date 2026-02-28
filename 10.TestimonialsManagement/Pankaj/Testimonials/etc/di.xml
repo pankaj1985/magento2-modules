@@ -10,4 +10,20 @@
             </argument>
         </arguments>
     </type>
+    
+    <virtualType name="Pankaj\Testimonials\Model\ResourceModel\Testimonials\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pankaj_testimonials</argument>
+            <argument name="resourceModel" xsi:type="string">Pankaj\Testimonials\Model\ResourceModel\Testimonials</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="testimonials_index_listing_data_source" xsi:type="string">Pankaj\Testimonials\Model\ResourceModel\Testimonials\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
 </config>
